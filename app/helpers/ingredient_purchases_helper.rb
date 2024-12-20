@@ -1,0 +1,2 @@
+module IngredientPurchasesHelper
+end

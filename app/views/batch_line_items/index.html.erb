@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Batch line items" %>
+
+<h1>Batch line items</h1>
+
+<div id="batch_line_items">
+  <% @batch_line_items.each do |batch_line_item| %>
+    <%= render batch_line_item %>
+    <p>
+      <%= link_to "Show this batch line item", batch_line_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New batch line item", new_batch_line_item_path %>

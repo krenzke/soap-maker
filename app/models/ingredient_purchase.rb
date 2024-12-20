@@ -1,0 +1,2 @@
+class IngredientPurchase < ApplicationRecord
+end

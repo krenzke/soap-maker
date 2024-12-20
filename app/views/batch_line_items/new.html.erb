@@ -1,0 +1,11 @@
+<% content_for :title, "New batch line item" %>
+
+<h1>New batch line item</h1>
+
+<%= render "form", batch_line_item: @batch_line_item %>
+
+<br>
+
+<div>
+  <%= link_to "Back to batch line items", batch_line_items_path %>
+</div>

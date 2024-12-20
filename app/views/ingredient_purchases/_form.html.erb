@@ -1,0 +1,37 @@
+<%= form_with(model: ingredient_purchase) do |form| %>
+  <% if ingredient_purchase.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(ingredient_purchase.errors.count, "error") %> prohibited this ingredient_purchase from being saved:</h2>
+
+      <ul>
+        <% ingredient_purchase.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :purchased_on, style: "display: block" %>
+    <%= form.date_field :purchased_on %>
+  </div>
+
+  <div>
+    <%= form.label :total_quantity_oz, style: "display: block" %>
+    <%= form.text_field :total_quantity_oz %>
+  </div>
+
+  <div>
+    <%= form.label :total_cost, style: "display: block" %>
+    <%= form.text_field :total_cost %>
+  </div>
+
+  <div>
+    <%= form.label :source, style: "display: block" %>
+    <%= form.text_field :source %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
