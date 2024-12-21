@@ -1,7 +1,7 @@
 <%= form_with(model: ingredient_purchase, class: 'border rounded drop-shadow p-4 inline-block mx-auto') do |form| %>
   <div class="my-4">
     <%= form.label :ingredient_id, class: 'input-label' %>
-    <%= form.collection_select :ingredient_id, Ingredient.order(name: :asc), :id, :name, {}, { class: 'input-field w-full'} %>
+    <%= form.collection_select :ingredient_id, Ingredient.order(name: :asc), :id, :name, {}, { class: 'input-field w-full', data: { 'use-select2': true }} %>
   </div>
 
   <div class="my-4">

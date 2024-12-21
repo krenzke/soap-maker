@@ -22,3 +22,19 @@
     @apply w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none;
   }
 }
+
+.select2-container.select2-container--default .select2-selection--single {
+  @apply rounded border-black h-auto;
+}
+
+.select2-container.select2-container--default .select2-selection--single .select2-selection__rendered {
+  @apply px-3 py-2 text-gray-700 leading-tight;
+}
+
+.select2-container.select2-container--default .select2-selection--single .select2-selection__arrow {
+  @apply top-1/2 -mt-[13px];
+}
+
+.select2-container.select2-container--focus .select2-selection.select2-selection--single {
+  @apply outline-none ring-1 ring-blue-600;
+}
