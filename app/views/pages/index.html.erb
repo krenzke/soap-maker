@@ -1,0 +1,32 @@
+<h1 class="text-2xl text-center">
+  Soap Maker
+</h1>
+
+<div class="flex gap-4 mt-6">
+  <div class="flex-1">
+    <h2 class="text-lg font-semibold">Recent Batches</h2>
+    <table class="w-full text-sm text-left text-gray-500 rtl:text-right">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Made On</th>
+          <th scope="col" class="px-6 py-3">Yield</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @recent_batches.each do |batch| %>
+          <tr class="bg-white border-b">
+            <td class="px-6 py-4"><%= batch.name %></td>
+            <td class="px-6 py-4"><%= batch.manufactured_on %></td>
+            <td class="px-6 py-4"><%= batch.units_produced %></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+  </div>
+  <div class="flex-1">
+    <h2 class="text-lg font-semibold">Inventory</h2>
+  </div>
+</div>

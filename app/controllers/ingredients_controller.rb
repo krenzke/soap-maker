@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.order(:name)
   end
 
   # GET /ingredients/1
@@ -24,7 +24,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
 
     if @ingredient.save
-      redirect_to @ingredient, notice: "Ingredient was successfully created."
+      redirect_to ingredients_path, notice: "Ingredient was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class IngredientsController < ApplicationController
   # PATCH/PUT /ingredients/1
   def update
     if @ingredient.update(ingredient_params)
-      redirect_to @ingredient, notice: "Ingredient was successfully updated.", status: :see_other
+      redirect_to edit_ingredient_path(@ingredient), notice: "Ingredient was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end

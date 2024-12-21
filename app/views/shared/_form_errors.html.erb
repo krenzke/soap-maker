@@ -1,0 +1,8 @@
+<div class="relative px-4 py-3 my-2 text-red-700 bg-red-100 border border-red-400 rounded" role="alert" data-alert>
+  <p>There were errors:</p>
+  <ul class="list-disc list-inside">
+    <% errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>

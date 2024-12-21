@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 text-white bg-blue-800 rounded shadow cursor-pointer hover:bg-blue-700;
+  }
+  .btn-secondary {
+    @apply px-4 py-2 rounded shadow cursor-pointer bg-sky-300;
+  }
+  .btn-alert {
+    @apply px-4 py-2 text-white bg-red-700 rounded shadow cursor-pointer;
+  }
+  .link {
+    @apply text-sky-600;
+  }
+  .input-label {
+    @apply block mb-2 text-sm font-bold text-gray-700;
+  }
+  .input-field {
+    @apply w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none;
+  }
+}

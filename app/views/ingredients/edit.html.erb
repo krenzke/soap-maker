@@ -1,12 +1,9 @@
-<% content_for :title, "Editing ingredient" %>
+<h1 class="text-lg font-bold text-center">Edit Ingredient</h1>
 
-<h1>Editing ingredient</h1>
+<% if @ingredient.errors.any? %>
+  <%= render partial: 'shared/form_errors', locals: { errors: @ingredient.errors } %>
+<% end %>
 
-<%= render "form", ingredient: @ingredient %>
-
-<br>
-
-<div>
-  <%= link_to "Show this ingredient", @ingredient %> |
-  <%= link_to "Back to ingredients", ingredients_path %>
+<div class="flex justify-center">
+  <%= render "form", ingredient: @ingredient %>
 </div>
