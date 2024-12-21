@@ -1,37 +1,35 @@
-<%= form_with(model: ingredient_purchase) do |form| %>
-  <% if ingredient_purchase.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(ingredient_purchase.errors.count, "error") %> prohibited this ingredient_purchase from being saved:</h2>
-
-      <ul>
-        <% ingredient_purchase.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :purchased_on, style: "display: block" %>
-    <%= form.date_field :purchased_on %>
+<%= form_with(model: ingredient_purchase, class: 'border rounded drop-shadow p-4 inline-block mx-auto') do |form| %>
+  <div class="my-4">
+    <%= form.label :ingredient_id, class: 'input-label' %>
+    <%= form.collection_select :ingredient_id, Ingredient.order(name: :asc), :id, :name, {}, { class: 'input-field w-full'} %>
   </div>
 
-  <div>
-    <%= form.label :total_quantity_oz, style: "display: block" %>
-    <%= form.text_field :total_quantity_oz %>
+  <div class="my-4">
+    <%= form.label :purchased_on, class: 'input-label' %>
+    <%= form.date_field :purchased_on, class: 'input-field' %>
   </div>
 
-  <div>
-    <%= form.label :total_cost, style: "display: block" %>
-    <%= form.text_field :total_cost %>
+  <div class="my-4">
+    <%= form.label :total_quantity_oz, class: 'input-label' %>
+    <%= form.number_field :total_quantity_oz, min: 0, class: 'input-field' %>
   </div>
 
-  <div>
-    <%= form.label :source, style: "display: block" %>
-    <%= form.text_field :source %>
+  <div class="my-4">
+    <%= form.label :total_cost, 'Total Cost ($)', class: 'input-label' %>
+    <%= form.number_field :total_cost, step: 0.01, min: 0, class: 'input-field' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="my-4">
+    <%= form.label :source, class: 'input-label' %>
+    <%= form.text_field :source, class: 'input-field' %>
+  </div>
+
+  <div class="flex justify-center gap-4 mt-4">
+    <% if ingredient_purchase.new_record? %>
+      <%= form.submit('Create Purchase', class: 'btn-primary') %>
+      <%= form.submit('Create and Make Another', class: 'btn-primary', name: 'make_another') %>
+    <% else %>
+      <%= form.submit(nil, class: 'btn-primary') %>
+    <% end %>
   </div>
 <% end %>

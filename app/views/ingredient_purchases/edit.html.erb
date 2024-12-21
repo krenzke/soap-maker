@@ -1,12 +1,9 @@
-<% content_for :title, "Editing ingredient purchase" %>
+<h1 class="text-lg font-bold text-center">Edit Purchase Record</h1>
 
-<h1>Editing ingredient purchase</h1>
+<% if @ingredient_purchase.errors.any? %>
+  <%= render partial: 'shared/form_errors', locals: { errors: @ingredient_purchase.errors } %>
+<% end %>
 
-<%= render "form", ingredient_purchase: @ingredient_purchase %>
-
-<br>
-
-<div>
-  <%= link_to "Show this ingredient purchase", @ingredient_purchase %> |
-  <%= link_to "Back to ingredient purchases", ingredient_purchases_path %>
+<div class="flex justify-center">
+  <%= render "form", ingredient_purchase: @ingredient_purchase %>
 </div>

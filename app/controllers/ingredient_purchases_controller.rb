@@ -3,7 +3,7 @@ class IngredientPurchasesController < ApplicationController
 
   # GET /ingredient_purchases
   def index
-    @ingredient_purchases = IngredientPurchase.all
+    @ingredient_purchases = IngredientPurchase.includes(:ingredient).order(purchased_on: :desc)
   end
 
   # GET /ingredient_purchases/1
@@ -12,7 +12,7 @@ class IngredientPurchasesController < ApplicationController
 
   # GET /ingredient_purchases/new
   def new
-    @ingredient_purchase = IngredientPurchase.new
+    @ingredient_purchase = IngredientPurchase.new(purchased_on: Date.today)
   end
 
   # GET /ingredient_purchases/1/edit
@@ -24,7 +24,8 @@ class IngredientPurchasesController < ApplicationController
     @ingredient_purchase = IngredientPurchase.new(ingredient_purchase_params)
 
     if @ingredient_purchase.save
-      redirect_to @ingredient_purchase, notice: "Ingredient purchase was successfully created."
+      url = params[:make_another].present? ? new_ingredient_purchase_path : ingredient_purchases_path
+      redirect_to url, notice: "Ingredient purchase was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +34,7 @@ class IngredientPurchasesController < ApplicationController
   # PATCH/PUT /ingredient_purchases/1
   def update
     if @ingredient_purchase.update(ingredient_purchase_params)
-      redirect_to @ingredient_purchase, notice: "Ingredient purchase was successfully updated.", status: :see_other
+      redirect_to edit_ingredient_purchase_path(@ingredient_purchase), notice: "Ingredient purchase was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,6 +54,6 @@ class IngredientPurchasesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ingredient_purchase_params
-      params.require(:ingredient_purchase).permit(:purchased_on, :total_quantity_oz, :total_cost, :source)
+      params.require(:ingredient_purchase).permit(:ingredient_id, :purchased_on, :total_quantity_oz, :total_cost, :source)
     end
 end
