@@ -12,7 +12,8 @@ class BatchesController < ApplicationController
 
   # GET /batches/new
   def new
-    @batch = Batch.new
+    @batch = Batch.new(manufactured_on: Date.today)
+    @batch.batch_line_items.build
   end
 
   # GET /batches/1/edit
@@ -53,6 +54,7 @@ class BatchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def batch_params
-      params.require(:batch).permit(:manufactured_on, :name, :units_produced)
+      params.require(:batch).permit(:manufactured_on, :name, :units_produced,
+        batch_line_items_attributes: [:ingredient_purchase_id, :quantity_oz, :seq])
     end
 end

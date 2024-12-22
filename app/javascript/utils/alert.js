@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var dismiss = alertEl.querySelector("[data-alert-dismiss]");
 
     // attach toggle click handler
-    dismiss.onclick = (e) => {
-      e.preventDefault();
-      alertEl.remove();
-    };
+    if (dismiss) {
+      dismiss.onclick = (e) => {
+        e.preventDefault();
+        alertEl.remove();
+      };
+    }
   });
 });

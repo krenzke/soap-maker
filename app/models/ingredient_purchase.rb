@@ -5,6 +5,8 @@ class IngredientPurchase < ApplicationRecord
 
   validates :purchased_on, :total_quantity_oz, :total_cost, :source, presence: true
 
+  scope :active, -> {where(active: true)}
+
   def price_per_oz
     return 0.0 if total_cost <= 0
 

@@ -1,11 +1,9 @@
-<% content_for :title, "New batch" %>
+<h1 class="text-lg font-bold text-center">Record New Batch</h1>
 
-<h1>New batch</h1>
+<% if @batch.errors.any? %>
+  <%= render partial: 'shared/form_errors', locals: { errors: @batch.errors } %>
+<% end %>
 
-<%= render "form", batch: @batch %>
-
-<br>
-
-<div>
-  <%= link_to "Back to batches", batches_path %>
+<div class="flex justify-center">
+  <%= render "form", batch: @batch %>
 </div>

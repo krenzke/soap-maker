@@ -1,32 +1,49 @@
-<%= form_with(model: batch) do |form| %>
-  <% if batch.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(batch.errors.count, "error") %> prohibited this batch from being saved:</h2>
+<%= form_with(model: batch, class: 'border rounded drop-shadow p-4 inline-block mx-auto') do |form| %>
+  <div class="flex gap-4">
+    <div class="flex-1">
+      <div class="my-4">
+        <%= form.label :name, class: 'input-label' %>
+        <%= form.text_field :name, class: 'input-field' %>
+      </div>
 
-      <ul>
-        <% batch.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+      <div class="my-4">
+        <%= form.label :manufactured_on, class: 'input-label' %>
+        <%= form.date_field :manufactured_on, class: 'input-field' %>
+      </div>
+
+      <div class="my-4">
+        <%= form.label :units_produced, class: 'input-label' %>
+        <%= form.text_field :units_produced, class: 'input-field' %>
+      </div>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label :manufactured_on, style: "display: block" %>
-    <%= form.date_field :manufactured_on %>
+    <div class="flex-1">
+      <table class="w-full text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-4 py-2">Ingredient Purchase</th>
+            <th scope="col" class="px-4 py-2">Quantity (Oz)</th>
+            <th scope="col" class="px-4 py-2"></th>
+          </tr>
+        </thead>
+        <tbody id="line-item-table-body">
+          <%= form.fields_for :batch_line_items do |line_item_form| %>
+            <%= render partial: 'item_form_row', locals: { form: line_item_form } %>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="flex justify-center mt-4">
+        <template id="line-item-template">
+          <%= form.fields_for :batch_line_items, child_index: 'CHILD_INDEX' do |line_item_form| %>
+            <%= render partial: 'item_form_row', locals: { form: line_item_form } %>
+          <% end %>
+        </template>
+        <button class="btn-secondary" id="add-batch-line-item">Add Item</button>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :units_produced, style: "display: block" %>
-    <%= form.text_field :units_produced %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="flex justify-center gap-4 mt-4">
+    <%= form.submit(nil, class: 'btn-primary') %>
   </div>
 <% end %>

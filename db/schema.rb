@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_20_212202) do
     t.decimal "total_quantity_oz", null: false
     t.decimal "total_cost", null: false
     t.string "source", null: false
+    t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ingredient_id"], name: "index_ingredient_purchases_on_ingredient_id"

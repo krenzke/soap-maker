@@ -8,7 +8,6 @@ Object.assign(window, { $: jQuery, jQuery });
 
 document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelectorAll("[data-use-select2]").forEach((el) => {
-    // console.log($(el));
-    $(el).select2();
+    $(el).select2({ width: "100%" });
   });
 });

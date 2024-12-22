@@ -19,6 +19,7 @@
         <td class="px-6 py-4"><%= ingredient.name %></td>
         <td class="flex gap-2 px-6 py-4">
           <%= link_to 'Edit', edit_ingredient_path(ingredient), class: 'link' %>
+          |
           <%= button_to 'Delete', ingredient, method: :delete, form: { data: { confirm: 'Are you sure you want to delete this ingredient?' } } %>
         </td>
       </tr>

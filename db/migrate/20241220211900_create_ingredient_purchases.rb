@@ -6,6 +6,7 @@ class CreateIngredientPurchases < ActiveRecord::Migration[7.2]
       t.decimal :total_quantity_oz, null: false
       t.decimal :total_cost, null: false
       t.string :source, null: false
+      t.boolean :active, null: false, default: true
 
       t.timestamps
     end

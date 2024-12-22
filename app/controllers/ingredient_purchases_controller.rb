@@ -34,7 +34,8 @@ class IngredientPurchasesController < ApplicationController
   # PATCH/PUT /ingredient_purchases/1
   def update
     if @ingredient_purchase.update(ingredient_purchase_params)
-      redirect_to edit_ingredient_purchase_path(@ingredient_purchase), notice: "Ingredient purchase was successfully updated.", status: :see_other
+      url = params[:back_to] == 'index' ? ingredient_purchases_path : edit_ingredient_purchase_path(@ingredient_purchase)
+      redirect_to url, notice: "Ingredient purchase was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,6 +55,6 @@ class IngredientPurchasesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ingredient_purchase_params
-      params.require(:ingredient_purchase).permit(:ingredient_id, :purchased_on, :total_quantity_oz, :total_cost, :source)
+      params.require(:ingredient_purchase).permit(:ingredient_id, :purchased_on, :total_quantity_oz, :total_cost, :source, :active)
     end
 end
