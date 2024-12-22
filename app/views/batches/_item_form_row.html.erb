@@ -1,10 +1,13 @@
 <tr data-persisted="<%= form.object.persisted? ? 'persisted' : 'not-persisted' %>">
   <td class="px-2">
+    <% if form.object.persisted? %>
+      <%= form.hidden_field :id %>
+    <% end %>
     <%= form.hidden_field :seq %>
     <%= form.hidden_field :_destroy, value: form.object.marked_for_destruction? ? '1' : '0' %>
     <%= form.select :ingredient_purchase_id, batch_line_item_purchase_options(IngredientPurchase.includes(:ingredient).active.order(purchased_on: :desc)), {}, class: 'input-field w-full', data: { 'use-select2': true } %>
   </td>
-  <td class="px-2">
+  <td class="px-2 min-w-28">
     <%= form.number_field :quantity_oz, class: 'input-field' %>
   </td>
   <td>

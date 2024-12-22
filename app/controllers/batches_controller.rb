@@ -18,6 +18,8 @@ class BatchesController < ApplicationController
 
   # GET /batches/1/edit
   def edit
+    # @batch.preload(batch_line_items: {})
+    ActiveRecord::Associations::Preloader.new(records: [@batch], associations: [{batch_line_items: { ingredient_purchase: :ingredient }}]).call
   end
 
   # POST /batches
@@ -34,7 +36,7 @@ class BatchesController < ApplicationController
   # PATCH/PUT /batches/1
   def update
     if @batch.update(batch_params)
-      redirect_to @batch, notice: "Batch was successfully updated.", status: :see_other
+      redirect_to edit_batch_path(@batch), notice: "Batch was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,6 +57,7 @@ class BatchesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def batch_params
       params.require(:batch).permit(:manufactured_on, :name, :units_produced,
-        batch_line_items_attributes: [:ingredient_purchase_id, :quantity_oz, :seq])
+        batch_line_items_attributes: [:id, :_destroy, :ingredient_purchase_id, :quantity_oz, :seq],
+        images: [])
     end
 end

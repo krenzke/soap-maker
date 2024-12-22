@@ -13,7 +13,7 @@ function initializeRow(row) {
   // initialize select2 dropdown
   row.querySelectorAll("[data-use-select2]").forEach((el) => {
     if (!$(el).data("select2")) {
-      $(el).select2();
+      $(el).select2({ width: "100%" });
     }
   });
 
@@ -24,7 +24,7 @@ function initializeRow(row) {
       console.log("REMOVING!");
       if (persisted) {
         row.querySelector("input[type=hidden][name$='[_destroy]']").value = "1";
-        row.addClass("hidden");
+        row.classList.add("hidden");
       } else {
         row.remove();
       }

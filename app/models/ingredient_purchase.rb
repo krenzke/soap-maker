@@ -6,6 +6,7 @@ class IngredientPurchase < ApplicationRecord
   validates :purchased_on, :total_quantity_oz, :total_cost, :source, presence: true
 
   scope :active, -> {where(active: true)}
+  scope :inactive, -> {where(active: false)}
 
   def self.with_amount_used
     items_table = BatchLineItem.arel_table

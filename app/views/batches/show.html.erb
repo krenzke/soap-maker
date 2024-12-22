@@ -1,48 +1,59 @@
-<h1 class="text-lg font-bold text-center">Batch #<%= @batch.id %>: <%= @batch.name %></h1>
-
-<div class="flex justify-center">
-  <div class="flex gap-6 p-4 mx-auto border rounded">
-    <div class="">
-      <table class="w-full">
-        <tbody class="divide-y">
-          <tr>
-            <td class="py-3 font-medium text-gray-900 text-sm/6 whitespace-nowrap">Manufactured On</td>
-            <td class="py-3 text-gray-700 text-sm/6 whitespace-nowrap"><%= @batch.manufactured_on %></td>
-          </tr>
-          <tr>
-            <td class="py-3 font-medium text-gray-900 text-sm/6 whitespace-nowrap">Units Produced</td>
-            <td class="py-3 text-gray-700 text-sm/6 whitespace-nowrap"><%= @batch.units_produced %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="">
-      <table class="w-full text-sm">
-        <thead class="">
-          <tr>
-            <th scope="col" class="px-2 py-1">Ingredient Purchase</th>
-            <th scope="col" class="px-2 py-1">Quantity (Oz)</th>
-            <th scope="col" class="px-2 py-1">Cost</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y">
-          <% @batch.batch_line_items.includes(ingredient_purchase: :ingredient).each do |line_item| %>
-            <tr>
-              <td class="px-2 py-1"><%= line_item.ingredient_purchase.ingredient.name %> (<%= line_item.ingredient_purchase.source %>)</td>
-              <td class="px-2 py-1"><%= line_item.quantity_oz %></td>
-              <td class="px-2 py-1 text-right"><%= number_to_currency(line_item.cost) %></td>
-            </tr>
-          <% end %>
-          <tr>
-            <td class="px-2 font-semibold text-right" colspan="2">Total Cost</td>
-            <td class="px-2 text-right"><%= number_to_currency(@batch.total_cost) %></td>
-          </tr> 
-          <tr>
-            <td class="px-2 font-semibold text-right" colspan="2">Cost Per Unit</td>
-            <td class="px-2 text-right"><%= number_to_currency(@batch.cost_per_unit) %></td>
-          </tr> 
-        </tbody>
-      </table>
-    </div>
+<div class="flex justify-between mb-4">
+  <h1 class="text-lg font-bold text-center">Batch #<%= @batch.id %>: <%= @batch.name %></h1>
+  <div>
+    <%= link_to 'Edit', edit_batch_path(@batch), class: 'btn-primary' %>
   </div>
+</div>
+
+<div class="flex gap-6 p-4 mx-auto border rounded">
+  <div class="flex-1">
+    <table class="w-full">
+      <tbody class="divide-y">
+        <tr>
+          <td class="py-3 font-medium text-gray-900 text-sm/6 whitespace-nowrap">Manufactured On</td>
+          <td class="py-3 text-gray-700 text-sm/6 whitespace-nowrap"><%= @batch.manufactured_on %></td>
+        </tr>
+        <tr>
+          <td class="py-3 font-medium text-gray-900 text-sm/6 whitespace-nowrap">Units Produced</td>
+          <td class="py-3 text-gray-700 text-sm/6 whitespace-nowrap"><%= @batch.units_produced %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex-[2]">
+    <table class="w-full text-sm">
+      <thead class="">
+        <tr>
+          <th scope="col" class="px-2 py-1 text-left">Ingredient Purchase</th>
+          <th scope="col" class="px-2 py-1 text-left">Quantity (Oz)</th>
+          <th scope="col" class="px-2 py-1 text-right">Cost</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <% @batch.batch_line_items.includes(ingredient_purchase: :ingredient).each do |line_item| %>
+          <tr>
+            <td class="px-2 py-1"><%= line_item.ingredient_purchase.ingredient.name %> (<%= line_item.ingredient_purchase.source %>)</td>
+            <td class="px-2 py-1"><%= line_item.quantity_oz %></td>
+            <td class="px-2 py-1 text-right"><%= number_to_currency(line_item.cost) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="px-2 font-semibold text-right" colspan="2">Total Cost</td>
+          <td class="px-2 text-right"><%= number_to_currency(@batch.total_cost) %></td>
+        </tr> 
+        <tr>
+          <td class="px-2 font-semibold text-right" colspan="2">Cost Per Unit</td>
+          <td class="px-2 text-right"><%= number_to_currency(@batch.cost_per_unit) %></td>
+        </tr> 
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="flex justify-center gap-1 mt-4">
+  <% @batch.images.each do |image| %>
+    <%= link_to rails_blob_path(image, disposition: 'attachment'), class: 'border rounded w-28 h-28 block' do %>
+      <%= image_tag url_for(image), alt: image.filename, class: 'object-contain' %>
+    <% end %>
+  <% end %>
 </div>

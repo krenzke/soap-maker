@@ -5,6 +5,12 @@
   </div>
 </div>
 
+<%= form_tag ingredient_purchases_path, method: :get, class: 'my-4 flex justify-center gap-3' do %>
+  <%= select_tag 'activeness', options_for_select([['All','all'],['Only Active', 'active'],['Only Inactive','inactive']], params[:activeness] || 'all'), class: 'input-field w-auto pr-8' %>
+
+  <%= submit_tag 'Search', class: 'btn-primary px-2 py-1' %>
+<% end %>
+
 <table class="w-full text-sm text-left text-gray-500 rtl:text-right">
   <thead class="text-xs text-gray-700 uppercase bg-gray-50">
     <tr>

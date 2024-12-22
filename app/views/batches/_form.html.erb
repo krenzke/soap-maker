@@ -15,6 +15,10 @@
         <%= form.label :units_produced, class: 'input-label' %>
         <%= form.text_field :units_produced, class: 'input-field' %>
       </div>
+
+      <% @batch.images.each do |image| %>
+        <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+      <% end %>
     </div>
 
     <div class="flex-1">
@@ -34,7 +38,7 @@
       </table>
       <div class="flex justify-center mt-4">
         <template id="line-item-template">
-          <%= form.fields_for :batch_line_items, child_index: 'CHILD_INDEX' do |line_item_form| %>
+          <%= form.fields_for :batch_line_items, BatchLineItem.new, child_index: 'CHILD_INDEX' do |line_item_form| %>
             <%= render partial: 'item_form_row', locals: { form: line_item_form } %>
           <% end %>
         </template>
