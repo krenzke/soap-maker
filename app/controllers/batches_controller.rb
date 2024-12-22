@@ -3,7 +3,7 @@ class BatchesController < ApplicationController
 
   # GET /batches
   def index
-    @batches = Batch.all
+    @batches = Batch.order(manufactured_on: :desc).page(params[:page])
   end
 
   # GET /batches/1

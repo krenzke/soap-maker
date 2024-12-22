@@ -25,7 +25,7 @@
         <td class="px-6 py-4"><%= ingredient_purchase.id %></td>
         <td class="px-6 py-4"><%= ingredient_purchase.ingredient.name %></td>
         <td class="px-6 py-4"><%= ingredient_purchase.source %></td>
-        <td class="px-6 py-4"><%= ingredient_purchase.purchased_on %></td>
+        <td class="px-6 py-4 whitespace-nowrap"><%= ingredient_purchase.purchased_on %></td>
         <td class="px-6 py-4">
           <%= ingredient_purchase.total_quantity_oz %>
           <% if ingredient_purchase.respond_to?(:amount_used) %>
@@ -49,5 +49,8 @@
       </tr>
     <% end %>
   </tbody>
-
 </table>
+
+<div class="my-4">
+  <%= paginate @ingredient_purchases %>
+</div>
