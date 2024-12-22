@@ -38,6 +38,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const rowTemplate = document.querySelector("#line-item-template");
   const itemTableBody = document.querySelector("#line-item-table-body");
 
+  if (!addItemButton || !rowTemplate || !itemTableBody) {
+    return;
+  }
+
   itemTableBody.querySelectorAll("tr").forEach((row) => initializeRow(row));
 
   addItemButton.addEventListener("click", (e) => {

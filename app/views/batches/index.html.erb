@@ -20,8 +20,8 @@
   <tbody>
     <% @batches.each do |batch| %>
       <tr class="bg-white border-b">
-        <td class="px-6 py-4"><%= batch.id %></td>
-        <td class="px-6 py-4"><%= batch.name %></td>
+        <td class="px-6 py-4"><%= link_to batch.id, batch_path(batch), class: 'link' %></td>
+        <td class="px-6 py-4"><%= link_to batch.name, batch_path(batch), class: 'link' %></td>
         <td class="px-6 py-4"><%= batch.manufactured_on %></td>
         <td class="px-6 py-4"><%= batch.units_produced %></td>
         <td class="px-6 py-4"><%= batch.ingredients.limit(4).map(&:name).join(', ') %></td>

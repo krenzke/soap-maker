@@ -6,4 +6,13 @@ class Batch < ApplicationRecord
   validates :name, :manufactured_on, presence: true
 
   accepts_nested_attributes_for :batch_line_items, allow_destroy: true
+
+  def total_cost
+    batch_line_items.map(&:cost).sum
+  end
+
+  def cost_per_unit
+    return 0.0 unless units_produced.present? && units_produced > 0
+    total_cost / units_produced
+  end
 end
