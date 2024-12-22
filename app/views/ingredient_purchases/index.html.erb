@@ -12,7 +12,7 @@
       <th scope="col" class="px-6 py-3">Ingredient</th>
       <th scope="col" class="px-6 py-3">Source</th>
       <th scope="col" class="px-6 py-3">Date</th>
-      <th scope="col" class="px-6 py-3">Quantity (Oz)</th>
+      <th scope="col" class="px-6 py-3">Purchased/Used/Remaining (Oz)</th>
       <th scope="col" class="px-6 py-3">Total Cost</th>
       <th scope="col" class="px-6 py-3">Cost per Oz</th>
       <th scope="col" class="px-6 py-3"></th>
@@ -26,7 +26,13 @@
         <td class="px-6 py-4"><%= ingredient_purchase.ingredient.name %></td>
         <td class="px-6 py-4"><%= ingredient_purchase.source %></td>
         <td class="px-6 py-4"><%= ingredient_purchase.purchased_on %></td>
-        <td class="px-6 py-4"><%= ingredient_purchase.total_quantity_oz %></td>
+        <td class="px-6 py-4">
+          <%= ingredient_purchase.total_quantity_oz %>
+          <% if ingredient_purchase.respond_to?(:amount_used) %>
+          / <%= ingredient_purchase.amount_used %>
+          / <%= ingredient_purchase.total_quantity_oz - ingredient_purchase.amount_used %>
+          <% end %>
+        </td>
         <td class="px-6 py-4"><%= number_to_currency(ingredient_purchase.total_cost) %></td>
         <td class="px-6 py-4"><%= number_to_currency(ingredient_purchase.price_per_oz) %></td>
         <td class="flex gap-2 px-6 py-4 no-underline">

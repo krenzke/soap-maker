@@ -7,6 +7,18 @@ class IngredientPurchase < ApplicationRecord
 
   scope :active, -> {where(active: true)}
 
+  def self.with_amount_used
+    items_table = BatchLineItem.arel_table
+    purchases_table = IngredientPurchase.arel_table
+    select([
+      purchases_table[Arel.star],
+      Arel::Nodes::NamedFunction.new(
+        'coalesce',
+        [BatchLineItem.arel_table[:quantity_oz].sum, 0]
+      ).as('amount_used')
+    ]).group(purchases_table[:id]).left_outer_joins(:batch_line_items)
+  end
+
   def price_per_oz
     return 0.0 if total_cost <= 0
 
