@@ -19,6 +19,7 @@
       <% @batch.images.each do |image| %>
         <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
       <% end %>
+      <%= form.file_field :images, multiple: true, accept: 'image/*' %>
     </div>
 
     <div class="flex-1">
