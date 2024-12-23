@@ -1,5 +1,9 @@
 <h1 class="text-lg font-bold text-center">Edit Batch Record</h1>
 
+<div class="flex justify-end my-4">
+  <%= link_to 'Back to Batch Details', batch_path(@batch), class: 'link' %>
+</div>
+
 <% if @batch.errors.any? %>
   <%= render partial: 'shared/form_errors', locals: { errors: @batch.errors } %>
 <% end %>

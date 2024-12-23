@@ -16,10 +16,13 @@
         <%= form.text_field :units_produced, class: 'input-field' %>
       </div>
 
-      <% @batch.images.each do |image| %>
-        <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
-      <% end %>
-      <%= form.file_field :images, multiple: true, accept: 'image/*' %>
+      <div class="my-4">
+        <% @batch.images.each do |image| %>
+          <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+        <% end %>
+        <label class="input-label" for="image-input">Upload Images</label>
+        <%= form.file_field :images, multiple: true, accept: 'image/*', id: 'image-input' %>
+      </div>
     </div>
 
     <div class="flex-1">
