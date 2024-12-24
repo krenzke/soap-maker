@@ -17,6 +17,9 @@
           <td class="py-3 font-medium text-gray-900 text-sm/6 whitespace-nowrap">Units Produced</td>
           <td class="py-3 text-gray-700 text-sm/6 whitespace-nowrap"><%= @batch.units_produced %></td>
         </tr>
+        <tr>
+          <td class="py-3"><%= @batch.notes %></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -38,12 +41,12 @@
           </tr>
         <% end %>
         <tr>
-          <td class="px-2 font-semibold text-right" colspan="2">Total Cost</td>
-          <td class="px-2 text-right"><%= number_to_currency(@batch.total_cost) %></td>
+          <td class="px-2 py-2 font-semibold text-right" colspan="2">Total Cost</td>
+          <td class="px-2 py-2 text-right"><%= number_to_currency(@batch.total_cost) %></td>
         </tr> 
         <tr>
-          <td class="px-2 font-semibold text-right" colspan="2">Cost Per Unit</td>
-          <td class="px-2 text-right"><%= number_to_currency(@batch.cost_per_unit) %></td>
+          <td class="px-2 py-2 font-semibold text-right" colspan="2">Cost Per Unit</td>
+          <td class="px-2 py-2 text-right"><%= number_to_currency(@batch.cost_per_unit) %></td>
         </tr> 
       </tbody>
     </table>
