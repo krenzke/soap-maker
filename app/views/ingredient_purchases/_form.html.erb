@@ -11,7 +11,7 @@
 
   <div class="my-4">
     <%= form.label :total_quantity_oz, class: 'input-label' %>
-    <%= form.number_field :total_quantity_oz, min: 0, class: 'input-field' %>
+    <%= form.number_field :total_quantity_oz, step: 0.01, min: 0, class: 'input-field' %>
   </div>
 
   <div class="my-4">

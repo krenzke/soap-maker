@@ -1,7 +1,15 @@
 <%= form_with(model: ingredient, class: 'border rounded drop-shadow p-4 inline-block mx-auto') do |form| %>
-  <div>
+  <div class="my-4">
     <%= form.label :name, class: "input-label" %>
     <%= form.text_field :name, class: "input-field" %>
+  </div>
+  <div class="my-4">
+    <%= form.label :label_name, class: "input-label" %>
+    <%= form.text_field :label_name, class: "input-field" %>
+  </div>
+  <div class="my-4">
+    <%= form.label :label_description, class: "input-label" %>
+    <%= form.text_field :label_description, class: "input-field" %>
   </div>
 
   <div class="flex justify-center mt-4">

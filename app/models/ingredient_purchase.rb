@@ -23,6 +23,6 @@ class IngredientPurchase < ApplicationRecord
   def price_per_oz
     return 0.0 if total_cost <= 0
 
-    total_quantity_oz / total_cost
+    total_cost / total_quantity_oz
   end
 end

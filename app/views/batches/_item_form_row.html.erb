@@ -8,7 +8,7 @@
     <%= form.select :ingredient_purchase_id, batch_line_item_purchase_options(IngredientPurchase.includes(:ingredient).active.order(purchased_on: :desc)), {}, class: 'input-field w-full', data: { 'use-select2': true } %>
   </td>
   <td class="px-2 min-w-28">
-    <%= form.number_field :quantity_oz, class: 'input-field' %>
+    <%= form.number_field :quantity_oz, step: 0.01, min: 0, class: 'input-field' %>
   </td>
   <td>
     <button class="items-center justify-center w-6 h-6 text-white bg-red-700 rounded-full fle hover:bg-red-800" data-remove-button>&#x2715;</button>
