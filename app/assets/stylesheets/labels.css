@@ -1,0 +1,61 @@
+html
+{
+  box-sizing: border-box;
+}
+*, *:before, *:after
+{
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+@page {
+  size: letter;
+}
+body {
+  width: 8.5in;
+  height: 11in;
+  padding: 0.25in;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 8pt;
+}
+.label {
+  border: solid black 1pt;
+  width: 2in;
+  height: 4in;
+  float: left;
+  margin-left: -1pt;
+  margin-top: -1pt;
+  padding: 0.15in;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul > li {
+  display: flex;
+  gap: 0.05in;
+  overflow: hidden;
+}
+.ingredient-name {
+  white-space: nowrap;
+}
+.ingredient-ellipses {
+  flex: 1;
+  border-bottom: 1pt dotted #000;
+  position: relative;
+  top: -5pt;
+  min-width: 0.5em;
+}
+.ingredient-description {
+  white-space: nowrap;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    border: none;
+  }
+}

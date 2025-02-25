@@ -1,0 +1,36 @@
+<h1 class="mb-4 text-3xl font-semibold">Label Generator</h1>
+<%= form_with url: labels_path, method: :post, html: { target: '_blank' } do |form| %>
+  <div class="flex gap-4">
+    <div class="flex-1">
+      <div class="my-4">
+        <%= form.label :title, class: 'input-label' %>
+        <%= form.text_field :title, value: @title, class: 'input-field' %>
+      </div>
+      <div class="flex justify-center">
+        <%= form.submit "Show Labels", class: 'btn-primary' %>
+      </div>
+    </div>
+    <div class="flex-1">
+      <table class="w-full text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase ">
+          <tr>
+            <th scope="col" class="px-2 py-1">Ingredient Name</th>
+            <th scope="col" class="px-2 py-1">Ingredient Description</th>
+            <th scope="col" class="px-2 py-1"></th>
+          </tr>
+        </thead>
+        <tbody id="label-line-item-table-body">
+          <% @ingredient_line_items.each_with_index do |li, i| %>
+            <%= render partial: 'line_item_row', locals: { line_item: li, index: i } %>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="flex justify-center mt-4">
+        <template id="label-line-item-template">
+          <%= render partial: 'line_item_row', locals: { line_item: LabelLineItem.new, index: 'CHILD_INDEX' } %>
+        </template>
+        <button class="px-4 py-1 text-sm bg-blue-200 btn-secondary hover:bg-blue-300" id="add-label-line-item">Add Item</button>
+      </div>
+    </div>
+  </div>
+<% end %>

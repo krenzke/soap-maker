@@ -3,6 +3,7 @@ import "~/utils/dataConfirm";
 import "~/utils/select2";
 import "~/components/batchForm";
 import "~/components/batchGallery";
+import "~/components/labelsForm";
 import "@rails/actiontext";
 import "trix";
 import "trix/dist/trix.css";

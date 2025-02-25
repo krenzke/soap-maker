@@ -1,0 +1,15 @@
+<div class="container">
+  <% @num_labels.times do %>
+    <div class="label">
+      <ul>
+        <% @ingredient_line_items.each do |li| %>
+          <li>
+            <div class="ingredient-name"><%= li.name %></div>
+            <div class="ingredient-ellipses"></div>
+            <div class="ingredient-description"><%= li.description %></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

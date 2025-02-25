@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   resources :ingredient_purchases, path: :purchases
   resources :ingredients
 
+  get :labels, to: "labels#index"
+  post :labels, to: "labels#show"
+
   root "pages#index"
 end
