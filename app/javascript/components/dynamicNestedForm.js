@@ -1,14 +1,9 @@
-function setSequenceNumbers(tableBody) {
-  tableBody
-    .querySelectorAll("input[type=hidden][name$='[seq]']")
-    .forEach((input, i) => {
-      input.value = i;
-    });
-}
-
-function initializeRow(row) {
+function initializeRow(row, beforeRemove) {
   const persisted = row.dataset.persisted === "persisted";
   const removeButton = row.querySelector("[data-remove-button]");
+  if (!removeButton) {
+    return;
+  }
 
   // initialize select2 dropdown
   row.querySelectorAll("[data-use-select2]").forEach((el) => {
@@ -21,11 +16,11 @@ function initializeRow(row) {
   if (!removeButton.getAttribute("listenerAttached")) {
     removeButton.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log("REMOVING!");
       if (persisted) {
         row.querySelector("input[type=hidden][name$='[_destroy]']").value = "1";
         row.classList.add("hidden");
       } else {
+        beforeRemove(row);
         row.remove();
       }
     });
@@ -33,12 +28,16 @@ function initializeRow(row) {
   }
 }
 
-export default function initializeDynamicNestedForm(
-  tableEl,
+export default function initializeDynamicNestedForm({
+  tableBodyEl,
   templateEl,
-  addButtonEl
-) {
-  tableEl.querySelectorAll("tr").forEach((row) => initializeRow(row));
+  addButtonEl,
+  afterAdd = () => {},
+  beforeRemove = () => {},
+}) {
+  tableBodyEl
+    .querySelectorAll("tr")
+    .forEach((row) => initializeRow(row, beforeRemove));
 
   addButtonEl.addEventListener("click", (e) => {
     e.preventDefault();
@@ -49,9 +48,8 @@ export default function initializeDynamicNestedForm(
 
     const newRow = $(html).filter("tr").first()[0];
 
-    initializeRow(newRow);
-    tableEl.append(newRow);
+    initializeRow(newRow, beforeRemove);
+    tableBodyEl.append(newRow);
+    afterAdd(newRow);
   });
-
-  setSequenceNumbers(tableEl);
 }

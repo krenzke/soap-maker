@@ -1,4 +1,10 @@
-<tr>
+<tr draggable="true">
+  <td>
+    <div class="cursor-move drag-handle">
+      <%= image_tag 'drag_indicator.svg', alt: 'drag' %>
+    </div>
+    <input type="hidden" name="line_items[<%= index %>][seq]" value="0"/>
+  </td>
   <td><input type="text" class="input-field" name="line_items[<%= index %>][name]" value="<%= line_item.name %>"/></td>
   <td><input type="text" class="input-field" name="line_items[<%= index %>][description]" value="<%= line_item.description %>"/></td>
   <td>
