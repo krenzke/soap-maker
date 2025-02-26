@@ -1,6 +1,8 @@
 <div class="container">
   <% @num_labels.times do %>
     <div class="label">
+    <p class="title"><%= @title %></p>
+    <!--
       <ul>
         <% @ingredient_line_items.each do |li| %>
           <li>
@@ -10,6 +12,7 @@
           </li>
         <% end %>
       </ul>
+    -->
     </div>
   <% end %>
 </div>

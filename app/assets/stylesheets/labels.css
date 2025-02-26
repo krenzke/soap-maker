@@ -8,20 +8,23 @@ html
   margin: 0;
   padding: 0;
 }
+
 @page {
   size: letter;
+  margin: 0.25in;
 }
+
 body {
   width: 8.5in;
   height: 11in;
-  padding: 0.25in;
+  /* padding: 0.25in; */
   font-family: 'Courier New', Courier, monospace;
-  font-size: 8pt;
+  font-size: 5pt;
 }
 .label {
   border: solid black 1pt;
-  width: 2in;
-  height: 4in;
+  width: 1.75in;
+  height: 7.25in;
   float: left;
   margin-left: -1pt;
   margin-top: -1pt;
@@ -37,6 +40,18 @@ ul > li {
   gap: 0.05in;
   overflow: hidden;
 }
+.title {
+  display: flex;
+  align-items: center;
+  margin-top: 1.25in;
+  padding: 0.1in 0;
+  border-top: dotted #EEE 1px;
+  text-align: center;
+  border-bottom: dotted #EEE 1px;
+  height: 1in;
+  font-size: clamp(8pt, 2vw, 15pt);
+  /* font-size: 1vw; */
+}
 .ingredient-name {
   white-space: nowrap;
 }
@@ -44,7 +59,7 @@ ul > li {
   flex: 1;
   border-bottom: 1pt dotted #000;
   position: relative;
-  top: -5pt;
+  top: -2pt;
   min-width: 0.5em;
 }
 .ingredient-description {
@@ -54,6 +69,9 @@ ul > li {
 @media print {
   .no-print {
     display: none !important;
+  }
+  .label {
+    break-inside: avoid;
   }
   body {
     border: none;

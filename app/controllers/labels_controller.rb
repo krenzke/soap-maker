@@ -3,6 +3,7 @@ class LabelsController < ApplicationController
 
   def index
     @batch = Batch.find_by(id: params[:batch_id])
+    @num_labels = 4
 
     if @batch
       @title = @batch.name
@@ -20,7 +21,7 @@ class LabelsController < ApplicationController
 
   def show
     @title = params[:title]
-    @num_labels = 6
+    @num_labels = params[:num_labels].to_i > 0 ? params[:num_labels].to_i : 6
     @ingredient_line_items = (params[:line_items]&.values || []).map do |li|
       LabelLineItem.new(name: li[:name], description: li[:description])
     end.sort_by(&:seq)

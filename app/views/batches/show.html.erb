@@ -2,6 +2,7 @@
   <h1 class="text-lg font-bold text-center">Batch #<%= @batch.id %>: <%= @batch.name %></h1>
   <div>
     <%= link_to 'Edit', edit_batch_path(@batch), class: 'btn-primary' %>
+    <%= link_to 'Labels', labels_path(batch_id: @batch), class: 'btn-secondary' %>
   </div>
 </div>
 
