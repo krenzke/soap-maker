@@ -40,17 +40,22 @@ ul > li {
   gap: 0.05in;
   overflow: hidden;
 }
-.title {
+.side-panel {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   margin-top: 1.25in;
   padding: 0.1in 0;
   border-top: dotted #EEE 1px;
-  text-align: center;
   border-bottom: dotted #EEE 1px;
   height: 1in;
+}
+.title {
+  text-align: center;
   font-size: clamp(8pt, 2vw, 15pt);
-  /* font-size: 1vw; */
+}
+.batch-number {
+  font-size: 10pt;
 }
 .ingredient-name {
   white-space: nowrap;

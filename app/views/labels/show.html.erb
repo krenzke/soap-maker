@@ -1,18 +1,23 @@
 <div class="container">
   <% @num_labels.times do %>
     <div class="label">
-    <p class="title"><%= @title %></p>
-    <!--
-      <ul>
-        <% @ingredient_line_items.each do |li| %>
-          <li>
-            <div class="ingredient-name"><%= li.name %></div>
-            <div class="ingredient-ellipses"></div>
-            <div class="ingredient-description"><%= li.description %></div>
-          </li>
+      <div class="side-panel">
+        <% if @label.batch_number.present? %>
+          <p class="batch-number">#<%= @label.batch_number %></p>
         <% end %>
-      </ul>
-    -->
+        <p class="title"><%= @label.title %></p>
+      </div>
+      <!--
+        <ul>
+          <% @label.line_items.each do |li| %>
+            <li>
+              <div class="ingredient-name"><%= li.name %></div>
+              <div class="ingredient-ellipses"></div>
+              <div class="ingredient-description"><%= li.description %></div>
+            </li>
+          <% end %>
+        </ul>
+      -->
     </div>
   <% end %>
 </div>

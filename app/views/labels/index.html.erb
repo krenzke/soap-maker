@@ -4,11 +4,15 @@
     <div class="flex-1">
       <div class="my-4">
         <%= form.label :title, class: 'input-label' %>
-        <%= form.text_field :title, value: @title, class: 'input-field' %>
+        <%= form.text_field :title, value: @label.title, class: 'input-field' %>
       </div>
       <div class="my-4">
         <%= form.label :num_labels, 'Number of Labels', class: 'input-label' %>
         <%= form.text_field :num_labels, value: @num_labels, class: 'input-field' %>
+      </div>
+      <div class="my-4">
+        <%= form.label :batch_number, 'Batch Number', class: 'input-label' %>
+        <%= form.text_field :batch_number, value: @label.batch_number, class: 'input-field' %>
       </div>
       <div class="flex justify-center">
         <%= form.submit "Show Labels", class: 'btn-primary' %>
@@ -25,7 +29,7 @@
           </tr>
         </thead>
         <tbody id="label-line-item-table-body">
-          <% @ingredient_line_items.each_with_index do |li, i| %>
+          <% @label.line_items.each_with_index do |li, i| %>
             <%= render partial: 'line_item_row', locals: { line_item: li, index: i } %>
             <%= render partial: 'line_item_interstitial_row' %>
           <% end %>

@@ -6,24 +6,27 @@ class LabelsController < ApplicationController
     @num_labels = 4
 
     if @batch
-      @title = @batch.name
-      @ingredient_line_items = @batch.batch_line_items.includes(ingredient_purchase: :ingredient).map do |li|
-        ingredient = li.ingredient_purchase.ingredient
-        LabelLineItem.new(name: ingredient.label_name.presence || ingredient.name, description: ingredient.label_description)
-      end
+      @label = Label.from_batch(@batch)
     else
-      @title = 'My Soap'
-      @ingredient_line_items = [
-        LabelLineItem.new(name: 'Ingredient 1', description: 'Description 1'),
-      ]
+      @label = Label.new(
+        title: 'My Soap',
+        batch_number: '',
+        line_items: [LabelLineItem.new(name: 'Olive Oil', description: 'Moisturize')]
+      )
     end
   end
 
   def show
-    @title = params[:title]
     @num_labels = params[:num_labels].to_i > 0 ? params[:num_labels].to_i : 6
-    @ingredient_line_items = (params[:line_items]&.values || []).map do |li|
+
+    line_items = (params[:line_items]&.values || []).map do |li|
       LabelLineItem.new(name: li[:name], description: li[:description])
     end.sort_by(&:seq)
+
+    @label = Label.new(
+      title: params[:title],
+      batch_number: params[:batch_number],
+      line_items: line_items
+    )
   end
 end
