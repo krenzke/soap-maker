@@ -33,10 +33,10 @@
         <td class="px-6 py-4"><%= ingredient_purchase.source %></td>
         <td class="px-6 py-4 whitespace-nowrap"><%= ingredient_purchase.purchased_on %></td>
         <td class="px-6 py-4">
-          <%= ingredient_purchase.total_quantity_oz %>
+          <%= ingredient_purchase.total_quantity_oz.round(2) %>
           <% if ingredient_purchase.respond_to?(:amount_used) %>
-          / <%= ingredient_purchase.amount_used %>
-          / <%= ingredient_purchase.total_quantity_oz - ingredient_purchase.amount_used %>
+          / <%= ingredient_purchase.amount_used.round(2) %>
+          / <%= (ingredient_purchase.total_quantity_oz - ingredient_purchase.amount_used).round(2) %>
           <% end %>
         </td>
         <td class="px-6 py-4"><%= number_to_currency(ingredient_purchase.total_cost) %></td>
