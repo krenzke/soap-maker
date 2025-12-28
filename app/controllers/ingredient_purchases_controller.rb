@@ -3,7 +3,7 @@ class IngredientPurchasesController < ApplicationController
 
   # GET /ingredient_purchases
   def index
-    @ingredient_purchases = IngredientPurchase.includes(:ingredient, :batch_line_items).with_amount_used.order(purchased_on: :desc).page(params[:page])
+    @ingredient_purchases = IngredientPurchase.includes(:ingredient, :batch_line_items).with_amount_used.order(active: :desc, purchased_on: :desc).page(params[:page])
     case params[:activeness]
     when 'active'
       @ingredient_purchases = @ingredient_purchases.active
