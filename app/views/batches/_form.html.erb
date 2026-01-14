@@ -34,6 +34,7 @@
       <table class="w-full text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase ">
           <tr>
+            <th scope="col" class="px-2 py-1"></th>
             <th scope="col" class="px-2 py-1">Ingredient Purchase</th>
             <th scope="col" class="px-2 py-1">Quantity (Oz)</th>
             <th scope="col" class="px-2 py-1"></th>
@@ -42,6 +43,7 @@
         <tbody id="line-item-table-body">
           <%= form.fields_for :batch_line_items do |line_item_form| %>
             <%= render partial: 'item_form_row', locals: { form: line_item_form } %>
+            <%= render partial: 'item_interstitial_row' %>
           <% end %>
         </tbody>
       </table>
@@ -50,6 +52,9 @@
           <%= form.fields_for :batch_line_items, BatchLineItem.new, child_index: 'CHILD_INDEX' do |line_item_form| %>
             <%= render partial: 'item_form_row', locals: { form: line_item_form } %>
           <% end %>
+        </template>
+        <template id="line-item-interstitial-template">
+          <%= render partial: 'item_interstitial_row' %>
         </template>
         <button class="px-4 py-1 text-sm bg-blue-200 btn-secondary hover:bg-blue-300" id="add-batch-line-item">Add Item</button>
       </div>

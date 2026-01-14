@@ -1,4 +1,9 @@
-<tr data-persisted="<%= form.object.persisted? ? 'persisted' : 'not-persisted' %>">
+<tr draggable="true" data-persisted="<%= form.object.persisted? ? 'persisted' : 'not-persisted' %>">
+  <td>
+    <div class="cursor-move drag-handle">
+      <%= image_tag 'drag_indicator.svg', alt: 'drag' %>
+    </div>
+  </td>
   <td class="px-2">
     <% if form.object.persisted? %>
       <%= form.hidden_field :id %>
