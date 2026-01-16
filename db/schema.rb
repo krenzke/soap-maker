@@ -50,14 +50,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_233906) do
   end
 
   create_table "batch_line_items", force: :cascade do |t|
-    t.integer "ingredient_purchase_id"
+    t.integer "ingredient_id"
     t.integer "batch_id"
-    t.decimal "quantity_oz", null: false
+    t.decimal "quantity", null: false
+    t.decimal "cost_per_unit", null: false
+    t.string "quantity_unit", null: false
     t.integer "seq"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["batch_id"], name: "index_batch_line_items_on_batch_id"
-    t.index ["ingredient_purchase_id"], name: "index_batch_line_items_on_ingredient_purchase_id"
+    t.index ["ingredient_id"], name: "index_batch_line_items_on_ingredient_id"
   end
 
   create_table "batches", force: :cascade do |t|
@@ -68,22 +70,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_233906) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ingredient_purchases", force: :cascade do |t|
-    t.integer "ingredient_id"
-    t.date "purchased_on", null: false
-    t.decimal "total_quantity_oz", null: false
-    t.decimal "total_cost", null: false
-    t.string "source", null: false
-    t.boolean "active", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ingredient_id"], name: "index_ingredient_purchases_on_ingredient_id"
-  end
-
   create_table "ingredients", force: :cascade do |t|
     t.string "name", null: false
-    t.string "label_name"
-    t.string "label_description"
+    t.string "ingredient_type", null: false
+    t.decimal "default_cost_per_unit"
+    t.string "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,6 +82,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_233906) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "batch_line_items", "batches"
-  add_foreign_key "batch_line_items", "ingredient_purchases"
-  add_foreign_key "ingredient_purchases", "ingredients"
+  add_foreign_key "batch_line_items", "ingredients"
 end

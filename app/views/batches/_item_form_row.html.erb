@@ -1,4 +1,4 @@
-<tr draggable="true" data-persisted="<%= form.object.persisted? ? 'persisted' : 'not-persisted' %>">
+<tr draggable="true" data-item-row data-persisted="<%= form.object.persisted? ? 'persisted' : 'not-persisted' %>">
   <td>
     <div class="cursor-move drag-handle">
       <%= image_tag 'drag_indicator.svg', alt: 'drag' %>
@@ -10,10 +10,16 @@
     <% end %>
     <%= form.hidden_field :seq %>
     <%= form.hidden_field :_destroy, value: form.object.marked_for_destruction? ? '1' : '0' %>
-    <%= form.select :ingredient_purchase_id, batch_line_item_purchase_options(IngredientPurchase.includes(:ingredient).active.order(purchased_on: :desc)), {}, class: 'input-field w-full', data: { 'use-select2': true } %>
+    <%= form.select :ingredient_id, grouped_ingredient_select_options, {}, class: 'input-field w-full' %>
   </td>
-  <td class="px-2 min-w-28">
-    <%= form.number_field :quantity_oz, step: 0.01, min: 0, class: 'input-field' %>
+  <td class="pl-2">
+    <%= form.number_field :quantity, step: 0.01, min: 0, class: 'input-field' %>
+  </td>
+  <td class="pr-2">
+    <%= form.select :quantity_unit, unit_select_options, {}, class: 'input-field' %>
+  </td>
+  <td class="px-2">
+    <%= form.number_field :cost_per_unit, step: 0.01, min: 0, class: 'input-field' %>
   </td>
   <td>
     <button class="items-center justify-center w-6 h-6 text-white bg-red-700 rounded-full fle hover:bg-red-800" data-remove-button>&#x2715;</button>

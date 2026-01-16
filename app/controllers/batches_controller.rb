@@ -19,7 +19,7 @@ class BatchesController < ApplicationController
   # GET /batches/1/edit
   def edit
     # @batch.preload(batch_line_items: {})
-    ActiveRecord::Associations::Preloader.new(records: [@batch], associations: [{batch_line_items: { ingredient_purchase: :ingredient }}]).call
+    ActiveRecord::Associations::Preloader.new(records: [@batch], associations: [{batch_line_items: :ingredient}]).call
   end
 
   # POST /batches
@@ -57,7 +57,7 @@ class BatchesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def batch_params
       params.require(:batch).permit(:manufactured_on, :name, :units_produced, :notes,
-        batch_line_items_attributes: [:id, :_destroy, :ingredient_purchase_id, :quantity_oz, :seq],
+        batch_line_items_attributes: [:id, :_destroy, :ingredient_id, :quantity, :quantity_unit, :cost_per_unit, :seq],
         images: [])
     end
 end

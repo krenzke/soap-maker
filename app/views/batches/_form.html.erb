@@ -1,7 +1,7 @@
 <%= form_with(model: batch, class: 'border rounded drop-shadow p-4 inline-block mx-auto') do |form| %>
   <div class="flex gap-4">
     <div class="flex-1">
-      <div class="my-4">
+      <div class="mb-4">
         <%= form.label :name, class: 'input-label' %>
         <%= form.text_field :name, class: 'input-field' %>
       </div>
@@ -30,13 +30,21 @@
       </div>
     </div>
 
-    <div class="flex-1">
+    <div class="flex-[2]">
       <table class="w-full text-left text-gray-500">
+        <colgroup>
+          <col />
+          <col class="w-80"/>
+          <col />
+          <col />
+          <col class="w-24">
+        </colgroup>
         <thead class="text-xs text-gray-700 uppercase ">
           <tr>
             <th scope="col" class="px-2 py-1"></th>
-            <th scope="col" class="px-2 py-1">Ingredient Purchase</th>
-            <th scope="col" class="px-2 py-1">Quantity (Oz)</th>
+            <th scope="col" class="px-2 py-1">Ingredient</th>
+            <th scope="col" colspan="2" class="px-2 py-1">Quantity</th>
+            <th scope="col" class="px-2 py-1">$/unit</th>
             <th scope="col" class="px-2 py-1"></th>
           </tr>
         </thead>
@@ -64,8 +72,4 @@
   <div class="flex justify-center gap-4 mt-4">
     <%= form.submit(nil, class: 'btn-primary') %>
   </div>
-<% end %>
-
-<%= javascript_tag do %>
-  
 <% end %>

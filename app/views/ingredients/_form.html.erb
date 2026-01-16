@@ -3,16 +3,25 @@
     <%= form.label :name, class: "input-label" %>
     <%= form.text_field :name, class: "input-field", autofocus: true %>
   </div>
+
   <div class="my-4">
-    <%= form.label :label_name, class: "input-label" %>
-    <%= form.text_field :label_name, class: "input-field" %>
+    <%= form.label :ingredient_type, class: "input-label" %>
+    <%= form.select :ingredient_type, ingredient_type_select_options, {}, class: "input-field" %>
   </div>
-  <div class="my-4">
-    <%= form.label :label_description, class: "input-label" %>
-    <%= form.text_field :label_description, class: "input-field" %>
+
+  <div class="flex gap-2 my-4">
+    <div class="flex-[5]">
+      <%= form.label :default_cost_per_unit, 'Cost per Unit ($)', class: "input-label" %>
+      <%= form.number_field :default_cost_per_unit, min: 0, step: 0.01, class: "input-field" %>
+    </div>
+    <div class="flex-[2]">
+      <%= form.label :unit, class: "input-label" %>
+      <%= form.select :unit, unit_select_options, {}, class: "input-field" %>
+    </div>
   </div>
 
   <div class="flex justify-center mt-4">
     <%= form.submit(nil, class: 'btn-primary') %>
   </div>
 <% end %>
+  

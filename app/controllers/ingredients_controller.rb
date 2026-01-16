@@ -53,6 +53,6 @@ class IngredientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :label_name, :label_description)
+      params.require(:ingredient).permit(:name, :ingredient_type, :default_cost_per_unit, :unit)
     end
 end

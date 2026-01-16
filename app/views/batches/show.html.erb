@@ -2,7 +2,6 @@
   <h1 class="text-lg font-bold text-center">Batch #<%= @batch.id %>: <%= @batch.name %></h1>
   <div>
     <%= link_to 'Edit', edit_batch_path(@batch), class: 'btn-primary' %>
-    <%= link_to 'Labels', labels_path(batch_id: @batch), class: 'btn-secondary' %>
   </div>
 </div>
 
@@ -28,16 +27,16 @@
     <table class="w-full text-sm">
       <thead class="">
         <tr>
-          <th scope="col" class="px-2 py-1 text-left">Ingredient Purchase</th>
-          <th scope="col" class="px-2 py-1 text-left">Quantity (Oz)</th>
+          <th scope="col" class="px-2 py-1 text-left">Ingredient</th>
+          <th scope="col" class="px-2 py-1 text-left">Quantity</th>
           <th scope="col" class="px-2 py-1 text-right">Cost</th>
         </tr>
       </thead>
       <tbody class="divide-y">
-        <% @batch.batch_line_items.includes(ingredient_purchase: :ingredient).each do |line_item| %>
+        <% @batch.batch_line_items.includes(:ingredient).each do |line_item| %>
           <tr>
-            <td class="px-2 py-1"><%= line_item.ingredient_purchase.ingredient.name %> (<%= line_item.ingredient_purchase.source %>)</td>
-            <td class="px-2 py-1"><%= line_item.quantity_oz %></td>
+            <td class="px-2 py-1"><%= line_item.ingredient.name %></td>
+            <td class="px-2 py-1"><%= line_item.quantity %> <%= line_item.quantity_unit %></td>
             <td class="px-2 py-1 text-right"><%= number_to_currency(line_item.cost) %></td>
           </tr>
         <% end %>

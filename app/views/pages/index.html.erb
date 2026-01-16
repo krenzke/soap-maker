@@ -26,27 +26,4 @@
 
     </table>
   </div>
-  <div class="flex-1">
-    <h2 class="text-lg font-semibold">Recent Purchases</h2>
-    <table class="w-full text-sm text-left text-gray-500 rtl:text-right">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-        <tr>
-          <th scope="col" class="px-6 py-3 whitespace-nowrap">Ingredient</th>
-          <th scope="col" class="px-6 py-3 whitespace-nowrap">Purchased On</th>
-          <th scope="col" class="px-6 py-3 whitespace-nowrap">Quantity (oz)</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @recent_purchases.each do |purchase| %>
-          <tr class="bg-white border-b">
-            <td class="px-6 py-4"><%= purchase.ingredient.name %></td>
-            <td class="px-6 py-4"><%= purchase.purchased_on %></td>
-            <td class="px-6 py-4"><%= purchase.total_quantity_oz %></td>
-          </tr>
-        <% end %>
-      </tbody>
-
-    </table>
-  </div>
 </div>

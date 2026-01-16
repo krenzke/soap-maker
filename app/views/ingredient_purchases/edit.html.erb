@@ -1,9 +1,0 @@
-<h1 class="text-lg font-bold text-center">Edit Purchase Record</h1>
-
-<% if @ingredient_purchase.errors.any? %>
-  <%= render partial: 'shared/form_errors', locals: { errors: @ingredient_purchase.errors } %>
-<% end %>
-
-<div class="flex justify-center">
-  <%= render "form", ingredient_purchase: @ingredient_purchase %>
-</div>
