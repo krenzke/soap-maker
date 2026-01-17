@@ -1,11 +1,12 @@
 module Units
   # db_string => display_string
   UNIT_TYPES = {
-    'oz' => 'Ounces',
-    'g' => 'Grams',
-    'lb' => 'Pounds',
+    'oz' => 'ounces',
+    'g' => 'grams',
+    'lb' => 'pounds',
     'tsp' => 'tsp',
     'tbl' => 'Tbl',
+    'ml' => 'ml',
   }.freeze
 
   def self.valid_db_types
