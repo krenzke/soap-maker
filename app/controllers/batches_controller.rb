@@ -48,6 +48,23 @@ class BatchesController < ApplicationController
     redirect_to batches_url, notice: "Batch was successfully destroyed.", status: :see_other
   end
 
+  def duplicate
+    old_batch = Batch.find(params[:batch_id])
+    new_batch = Batch.new(name: "#{old_batch.name} (copy)")
+    old_batch.batch_line_items.each do |li|
+      new_batch.batch_line_items.build(
+        ingredient_id: li.ingredient_id,
+        quantity: li.quantity,
+        cost_per_unit: li.cost_per_unit,
+        quantity_unit: li.quantity_unit,
+        seq: li.seq,
+      )
+    end
+
+    new_batch.save!
+    redirect_to batch_path(new_batch), notice: "Batch was successfully created"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_batch

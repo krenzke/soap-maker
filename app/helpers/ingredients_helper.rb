@@ -25,7 +25,7 @@ module IngredientsHelper
     end
   end
 
-  def grouped_ingredient_select_options
+  def grouped_ingredient_select_options(selected_id)
     all_ingredients = Ingredient.order(name: :asc).to_a
 
     # safe_join([
@@ -48,7 +48,7 @@ module IngredientsHelper
       tag.optgroup(label: pretty_type_name) do
         options = all_ingredients
           .filter{|i| i.ingredient_type == db_type_name }
-          .map{|i| tag.option(i.name, value: i.id, data: {
+          .map{|i| tag.option(i.name, value: i.id, selected: i.id == selected_id, data: {
             'default-cost-per-unit': i.default_cost_per_unit&.round(2),
             'default-unit': i.unit || 'oz'
             })}

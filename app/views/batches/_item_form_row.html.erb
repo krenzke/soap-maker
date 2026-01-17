@@ -10,7 +10,7 @@
     <% end %>
     <%= form.hidden_field :seq %>
     <%= form.hidden_field :_destroy, value: form.object.marked_for_destruction? ? '1' : '0' %>
-    <%= form.select :ingredient_id, grouped_ingredient_select_options, {}, class: 'input-field w-full' %>
+    <%= form.select :ingredient_id, grouped_ingredient_select_options(form.object.ingredient_id), {}, class: 'input-field w-full' %>
   </td>
   <td class="pl-2">
     <%= form.number_field :quantity, step: 0.01, min: 0, class: 'input-field' %>

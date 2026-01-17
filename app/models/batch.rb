@@ -5,7 +5,7 @@ class Batch < ApplicationRecord
   has_rich_text :notes
 
   validates :images, attachment: { image: true, max_size: 10.megabyte }
-  validates :name, :manufactured_on, presence: true
+  validates :name, presence: true
 
   accepts_nested_attributes_for :batch_line_items, allow_destroy: true
 
