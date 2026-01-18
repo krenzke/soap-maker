@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_233906) do
   create_table "batches", force: :cascade do |t|
     t.string "name", null: false
     t.date "manufactured_on"
-    t.decimal "units_produced"
+    t.integer "units_produced"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

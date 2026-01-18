@@ -6,6 +6,10 @@ class BatchLineItem < ApplicationRecord
 
   scope :in_order, -> { order(seq: :asc) }
 
+  def self.of_type(types)
+    joins(:ingredient).where({ingredients: {ingredient_type: types}})
+  end
+
   def cost
     quantity * cost_per_unit
   end

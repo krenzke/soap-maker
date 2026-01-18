@@ -9,6 +9,10 @@ class Batch < ApplicationRecord
 
   accepts_nested_attributes_for :batch_line_items, allow_destroy: true
 
+  def self.name_search(q)
+    where('batches.name ILIKE :q', q: "%#{q}%")
+  end
+
   def total_cost
     batch_line_items.map(&:cost).sum
   end

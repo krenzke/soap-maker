@@ -24,6 +24,10 @@
   }
 }
 
+.writing-sideways-lr {
+  writing-mode: sideways-lr;
+}
+
 .select2-container.select2-container--default .select2-selection--single {
   @apply h-auto border-black rounded;
 }
@@ -45,7 +49,7 @@
 }
 
 .trix-content ol, .trix-content ul, trix-editor ul, trix-editor ol {
-  @apply list-inside ml-4;
+  @apply ml-4 list-inside;
 }
 .trix-content ol, trix-editor ol {
   @apply list-decimal;

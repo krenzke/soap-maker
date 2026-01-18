@@ -1,0 +1,10 @@
+<% items.sort_by(&:quantity).reverse.each_with_index do |item, i| %>
+  <tr>
+    <% if i == 0 %>
+      <td class="px-1 py-2 text-center writing-sideways-lr" rowspan=<%= items.size %>><%= Ingredient::TYPES[group_name] %></td>
+    <% end %>
+    <td class="px-2 py-1"><%= item.ingredient.name %></td>
+    <td class="px-2 py-1"><%= item.quantity %> <%= item.quantity_unit %></td>
+    <td class="px-2 py-1 text-right"><%= number_to_currency item.cost %></td>
+  </tr>
+<% end %>

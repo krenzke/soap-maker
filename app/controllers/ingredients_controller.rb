@@ -3,7 +3,7 @@ class IngredientsController < ApplicationController
 
   # GET /ingredients
   def index
-    @ingredients = Ingredient.order(:name)
+    @ingredients = Ingredients::ListIngredients.new(params).execute
   end
 
   # GET /ingredients/1
@@ -41,8 +41,13 @@ class IngredientsController < ApplicationController
 
   # DELETE /ingredients/1
   def destroy
-    @ingredient.destroy!
-    redirect_to ingredients_url, notice: "Ingredient was successfully destroyed.", status: :see_other
+    if @ingredient.destroy
+      redirect_to ingredients_url, notice: "Ingredient was successfully destroyed.", status: :see_other
+    else
+      @ingredients = Ingredient.order(:name)
+      flash[:alert] = @ingredient.errors.full_messages.join(', ')
+      render :index
+    end
   end
 
   private

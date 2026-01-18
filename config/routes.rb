@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :recipes
 
-  root "pages#index"
+  root "batches#index"
 end
