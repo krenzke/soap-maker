@@ -5,13 +5,6 @@ function initializeRow(row, beforeRemove) {
     return;
   }
 
-  // initialize select2 dropdown
-  // row.querySelectorAll("[data-use-select2]").forEach((el) => {
-  //   if (!$(el).data("select2")) {
-  //     $(el).select2({ width: "100%" });
-  //   }
-  // });
-
   // hook up the remove button
   if (!removeButton.getAttribute("listenerAttached")) {
     removeButton.addEventListener("click", (e) => {

@@ -54,9 +54,8 @@ class BatchesController < ApplicationController
     old_batch.batch_line_items.each do |li|
       new_batch.batch_line_items.build(
         ingredient_id: li.ingredient_id,
-        quantity: li.quantity,
-        cost_per_unit: li.cost_per_unit,
-        quantity_unit: li.quantity_unit,
+        quantity_in_grams: li.quantity_in_grams,
+        cost_per_gram: li.cost_per_gram,
         seq: li.seq,
       )
     end
@@ -74,7 +73,7 @@ class BatchesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def batch_params
       params.require(:batch).permit(:manufactured_on, :name, :units_produced, :notes,
-        batch_line_items_attributes: [:id, :_destroy, :ingredient_id, :quantity, :quantity_unit, :cost_per_unit, :seq],
+        batch_line_items_attributes: [:id, :_destroy, :ingredient_id, :quantity_in_grams, :cost_per_gram, :seq],
         images: [])
     end
 end

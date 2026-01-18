@@ -9,15 +9,9 @@
     <%= form.select :ingredient_type, ingredient_type_select_options, {}, class: "input-field" %>
   </div>
 
-  <div class="flex gap-2 my-4">
-    <div class="flex-[5]">
-      <%= form.label :default_cost_per_unit, 'Cost per Unit ($)', class: "input-label" %>
-      <%= form.number_field :default_cost_per_unit, min: 0, step: 0.01, class: "input-field" %>
-    </div>
-    <div class="flex-[2]">
-      <%= form.label :unit, class: "input-label" %>
-      <%= form.select :unit, unit_select_options, {}, class: "input-field" %>
-    </div>
+  <div class="my-4">
+    <%= form.label :default_cost_per_gram, 'Cost per gram ($)', class: "input-label" %>
+    <%= form.number_field :default_cost_per_gram, min: 0, step: 'any', class: "input-field" %>
   </div>
 
   <div class="flex justify-center mt-4">

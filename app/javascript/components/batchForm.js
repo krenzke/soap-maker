@@ -12,19 +12,17 @@ function setRowSequenceValues(tableBodyEl) {
   });
 }
 
-function autofillCostAndUnit(tableRow) {
+function autofillCost(tableRow) {
   const ingredientSelect = tableRow.querySelector(
     "select[name$='[ingredient_id]']"
   );
-  const costPerUnitInput = tableRow.querySelector(
-    "input[name$='[cost_per_unit]']"
+  const costPerGramInput = tableRow.querySelector(
+    "input[name$='[cost_per_gram]']"
   );
-  const unitSelect = tableRow.querySelector("select[name$='[quantity_unit]']");
 
   const selectedOption =
     ingredientSelect.options[ingredientSelect.selectedIndex];
-  costPerUnitInput.value = selectedOption.dataset.defaultCostPerUnit;
-  unitSelect.value = selectedOption.dataset.defaultUnit;
+  costPerGramInput.value = selectedOption.dataset.defaultCostPerUnit;
 }
 
 function initializeSelect2(tableRow) {
@@ -34,18 +32,17 @@ function initializeSelect2(tableRow) {
   if ($(ingredientSelect).data("select2")) {
     return;
   }
-  const costPerUnitInput = tableRow.querySelector(
-    "input[name$='[cost_per_unit]']"
+  const costPerGramInput = tableRow.querySelector(
+    "input[name$='[cost_per_gram]']"
   );
-  const unitSelect = tableRow.querySelector("select[name$='[quantity_unit]']");
 
-  if (!costPerUnitInput.value) {
-    autofillCostAndUnit(tableRow);
+  if (!costPerGramInput.value) {
+    autofillCost(tableRow);
   }
 
   $(ingredientSelect).select2({ width: "100%" });
   $(ingredientSelect).on("change", (e) => {
-    autofillCostAndUnit(tableRow);
+    autofillCost(tableRow);
   });
 }
 

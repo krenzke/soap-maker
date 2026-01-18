@@ -49,8 +49,7 @@ module IngredientsHelper
         options = all_ingredients
           .filter{|i| i.ingredient_type == db_type_name }
           .map{|i| tag.option(i.name, value: i.id, selected: i.id == selected_id, data: {
-            'default-cost-per-unit': i.default_cost_per_unit&.round(2),
-            'default-unit': i.unit || 'oz'
+            'default-cost-per-gram': i.default_cost_per_gram,
             })}
         safe_join(options)
       end

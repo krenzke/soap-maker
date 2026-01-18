@@ -2,7 +2,7 @@ class BatchLineItem < ApplicationRecord
   belongs_to :batch
   belongs_to :ingredient
 
-  validates :quantity, :quantity_unit, :cost_per_unit, presence: true
+  validates :quantity_in_grams, :cost_per_gram, presence: true
 
   scope :in_order, -> { order(seq: :asc) }
 
@@ -11,6 +11,6 @@ class BatchLineItem < ApplicationRecord
   end
 
   def cost
-    quantity * cost_per_unit
+    quantity_in_grams * cost_per_gram
   end
 end

@@ -11,7 +11,6 @@ class Ingredient < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :ingredient_type, inclusion: { in: TYPES }
-  validates :unit, inclusion: { in: Units::valid_db_types }, allow_blank: true
 
   has_many :batch_line_items
   has_many :batches, through: :batch_line_items

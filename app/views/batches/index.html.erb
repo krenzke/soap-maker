@@ -34,7 +34,7 @@
         <td class="px-6 py-4"><%= link_to batch.name, batch_path(batch), class: 'link' %></td>
         <td class="px-6 py-4"><%= batch.manufactured_on %></td>
         <td class="px-6 py-4"><%= batch.units_produced %></td>
-        <td class="px-6 py-4"><%= batch.batch_line_items.of_type(['oil']).order(quantity: :desc).limit(4).map{|li| li.ingredient.name }.join(', ') %></td>
+        <td class="px-6 py-4"><%= batch.batch_line_items.of_type(['oil']).order(quantity_in_grams: :desc).limit(4).map{|li| li.ingredient.name }.join(', ') %></td>
         <td class="flex gap-2 px-6 py-4 no-underline">
           <%= link_to 'Edit', edit_batch_path(batch), class: 'link' %>
           |

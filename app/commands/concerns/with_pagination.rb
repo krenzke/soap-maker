@@ -14,6 +14,6 @@ module WithPagination
   end
 
   def default_per_page
-    20
+    50
   end
 end

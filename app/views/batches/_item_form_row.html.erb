@@ -13,13 +13,10 @@
     <%= form.select :ingredient_id, grouped_ingredient_select_options(form.object.ingredient_id), {}, class: 'input-field w-full' %>
   </td>
   <td class="pl-2">
-    <%= form.number_field :quantity, step: 0.01, min: 0, class: 'input-field' %>
-  </td>
-  <td class="pr-2">
-    <%= form.select :quantity_unit, unit_select_options, {}, class: 'input-field' %>
+    <%= form.number_field :quantity_in_grams, min: 0, step: 'any', class: 'input-field' %>
   </td>
   <td class="px-2">
-    <%= form.number_field :cost_per_unit, step: 0.01, min: 0, class: 'input-field' %>
+    <%= form.number_field :cost_per_gram, min: 0, step: 'any', class: 'input-field' %>
   </td>
   <td>
     <button class="items-center justify-center w-6 h-6 text-white bg-red-700 rounded-full fle hover:bg-red-800" data-remove-button>&#x2715;</button>

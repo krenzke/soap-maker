@@ -29,8 +29,7 @@ namespace :data do
       Ingredient.create!(
         name: ingredient_data['name'],
         ingredient_type: ingredient_data['ingredient_type'],
-        default_cost_per_unit: ingredient_data['default_cost_per_unit'],
-        unit: ingredient_data['unit'],
+        default_cost_per_gram: ingredient_data['default_cost_per_unit'],
       )
     end
 
@@ -49,9 +48,8 @@ namespace :data do
 
         batch.batch_line_items.create(
           ingredient_id: ingredient.id,
-          quantity: li['quantity'],
-          cost_per_unit: li['cost_per_unit'],
-          quantity_unit: li['quantity_unit'],
+          quantity_in_grams: li['quantity'],
+          cost_per_gram: li['cost_per_unit'],
           seq: li['seq']
         )
       end

@@ -52,9 +52,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_233906) do
   create_table "batch_line_items", force: :cascade do |t|
     t.integer "ingredient_id"
     t.integer "batch_id"
-    t.decimal "quantity", null: false
-    t.decimal "cost_per_unit", null: false
-    t.string "quantity_unit", null: false
+    t.decimal "quantity_in_grams", null: false
+    t.decimal "cost_per_gram", null: false
     t.integer "seq"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,8 +72,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_23_233906) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name", null: false
     t.string "ingredient_type", null: false
-    t.decimal "default_cost_per_unit"
-    t.string "unit"
+    t.decimal "default_cost_per_gram"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
