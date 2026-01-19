@@ -7,7 +7,7 @@
     remote:        data-remote
 -%>
 <% if current_page.first? %>
-  <span class='px-2 py-1 border rounded'>Prev &#x2190;</span>
+  <span class='px-2 py-1 text-center border-2 rounded'>Prev &#x2190;</span>
 <% else %>
-  <%= link_to 'Prev &#x2190;'.html_safe, url, class: 'px-2 py-1 border rounded hover:bg-blue-500 hover:text-white' %>
+  <%= link_to 'Prev &#x2190;'.html_safe, url, class: 'px-2 py-1 border-2 rounded hover:border-blue-800 text-center' %>
 <% end %>

@@ -8,9 +8,9 @@
     remote:        data-remote
 -%>
 <% if page.current? %>
-  <span class="block px-2 py-1 text-white bg-blue-500 border rounded w-7"><%= page %></span>
+  <span class="block px-2 py-1 text-center border-2 border-blue-800 rounded w-7"><%= page %></span>
 <% else %>
   <%= link_to page, url, {
-      class: class_names('w-7 block border rounded px-2 py-1 hover:bg-blue-500 hover:text-white')
+      class: class_names('w-7 block border-2 rounded px-2 py-1 hover:border-blue-800 text-center')
     } %>
 <% end %>

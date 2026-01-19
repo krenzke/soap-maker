@@ -1,5 +1,6 @@
 <div class="flex items-center justify-between mb-6">
   <h1 class="text-2xl font-semibold">Batches</h1>
+  <%= paginate @batches %>
   <div>
     <%= link_to "Record New Batch", new_batch_path, class: 'btn-primary' %>
   </div>

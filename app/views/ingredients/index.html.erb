@@ -1,5 +1,6 @@
 <div class="flex items-center justify-between mb-6">
   <h1 class="text-2xl font-semibold">Ingredients</h1>
+  <%= paginate @ingredients %>
   <div>
     <%= link_to "Add Ingredient", new_ingredient_path, class: 'btn-primary' %>
   </div>
