@@ -22,7 +22,7 @@ function autofillCost(tableRow) {
 
   const selectedOption =
     ingredientSelect.options[ingredientSelect.selectedIndex];
-  costPerGramInput.value = selectedOption.dataset.defaultCostPerUnit;
+  costPerGramInput.value = selectedOption.dataset.defaultCostPerGram;
 }
 
 function initializeSelect2(tableRow) {
