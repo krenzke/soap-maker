@@ -72,7 +72,7 @@ class BatchesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def batch_params
-      params.require(:batch).permit(:manufactured_on, :name, :units_produced, :notes,
+      params.require(:batch).permit(:manufactured_on, :name, :units_produced, :notes, :mold,
         batch_line_items_attributes: [:id, :_destroy, :ingredient_id, :quantity_in_grams, :cost_per_gram, :seq],
         images: [])
     end

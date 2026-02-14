@@ -12,6 +12,16 @@
       </div>
 
       <div class="my-4">
+        <%= form.label :mold, 'Mold Used', class: 'input-label' %>
+        <%= form.text_field :mold, class: 'input-field', list: 'molds' %>
+        <datalist id="molds">
+          <% Batch::MOLDS.each do |mold_name| %>
+            <option value="<%= mold_name %>"></option>
+          <% end %>
+        </datalist>
+      </div>
+
+      <div class="my-4">
         <%= form.label :units_produced, class: 'input-label' %>
         <%= form.text_field :units_produced, class: 'input-field' %>
       </div>

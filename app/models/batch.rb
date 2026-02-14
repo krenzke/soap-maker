@@ -1,4 +1,11 @@
 class Batch < ApplicationRecord
+  MOLDS = [
+    "10 inch loaf",
+    "3x3 cubes",
+    "3x4 circles",
+    "9-bar rectangle",
+  ].freeze
+
   has_many :batch_line_items, ->  { order(seq: :asc) }, dependent: :destroy
   has_many :ingredients, through: :batch_line_items
   has_many_attached :images
